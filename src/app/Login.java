@@ -6,8 +6,10 @@
 package app;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import model.Usuario;
 
 /**
  *
@@ -15,6 +17,8 @@ import javax.swing.border.LineBorder;
  */
 public class Login extends javax.swing.JFrame {
 
+    
+    Usuario usuario1 = new Usuario("Santiago", "1234");
     /**
      * Creates new form Login
      */
@@ -66,6 +70,9 @@ public class Login extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 labelBotonMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                labelBotonMousePressed(evt);
             }
         });
 
@@ -133,6 +140,25 @@ public class Login extends javax.swing.JFrame {
         labelBoton.setBackground(Color.red);
         labelBoton.setForeground(Color.white);
     }//GEN-LAST:event_labelBotonMouseExited
+
+    private void labelBotonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBotonMousePressed
+        String nombre, contra;
+        
+        nombre = campoTexto.getText();
+        contra = campoContra.getText();
+        
+        if ( (nombre.equals("")) && (contra.equals(""))) {
+            JOptionPane.showMessageDialog(null, "Porfavor rellene los campos.");
+        }
+        else if ( (nombre != usuario1.getNombre()) || (contra != usuario1.getContra())) {
+            JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrectos, digite nuevamente.");
+        }
+        else if ( (nombre == usuario1.getNombre()) && (contra == usuario1.getContra()) ) {
+            JOptionPane.showMessageDialog(null, "Bienvenido " + usuario1.getNombre() + ".");
+        }
+        
+        
+    }//GEN-LAST:event_labelBotonMousePressed
 
     /**
      * @param args the command line arguments
